@@ -18,7 +18,7 @@ console.log("-----------------");
 //ex03
 
 var altura = 5;
-var volume = comprimento * largura * altura;
+var volume = altura * a;
 console.log("O volume é de ", volume, "cm³");
 console.log("-----------------");
 
@@ -46,3 +46,4 @@ var Tempo = 3.5
 var distancia = velMedia * Tempo
 console.log("A distancia percorrida foi de", distancia, "KM")
 console.log("-----------------");
+
