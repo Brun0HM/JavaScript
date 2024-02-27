@@ -32,10 +32,41 @@ console.log("Terceiro posição:", dinos[2]);
 console.log("Quarta posição:", dinos[3]);
 
 //Removendo elementos do vetor
-dinos.pop()//Remove o último elemento do vetor
+dinos.pop(); //Remove o último elemento do vetor
 console.table(dinos);
 
-dinos.shift()//remove o primeiro do vetor
+dinos.shift(); //remove o primeiro do vetor
 console.table(dinos);
 
-dinos.splice(1, 1)//Remove o elemento a partir índice
+dinos.splice(1, 1); //Remove o elemento a partir índice 1, contando 1
+console.table(dinos);
+
+console.log(" ");
+console.log("--------------------Continuação da aula--------------------");
+var dinos = [
+  "Tricerátops",
+  "Tiranossauro Rex",
+  "Estegossauro",
+  "Anquilossauro",
+  "Brontossauro",
+  "Ictiossauro",
+  "Pterodáctilo",
+  "Espinossauro",
+];
+
+console.table(dinos);
+
+var elementoProcurado = "Brontossauro";
+var posicao = dinos.indexOf(elementoProcurado);
+console.log("O " + elementoProcurado + "está no índice " + posicao);
+
+var elementoProcurado = "Pterodáctilo";
+var posicao = dinos.indexOf(elementoProcurado);
+console.log("O " + elementoProcurado + "está no índice " + posicao);
+
+var elementoProcurado = "Tricerátops";
+var posicao = dinos.indexOf(elementoProcurado);
+console.log("O " + elementoProcurado + "está no índice " + posicao);
+
+// Criando copia de array
+
