@@ -22,19 +22,12 @@ console.log(
   "---------------------------------AtividadePart2---------------------------------"
 );
 
-var usuario = ["Thiago", 80, "verde.", "Banana.", "itapui", "Douglas."];
-console.table(usuario);
+var user = ["Thiago", 80, "verde", "Banana", "itapui", "Douglas"];
+console.table(user);
+console.log(`Olá ${user[0]}! Seja bem-vindo ao nosso sistema.`);
 console.log(
-  "Olá",
-  usuario[0],
-  "Seja bem vindo ao nosso sistema. \nVocê mora em",
-  usuario[4],
-  "E tem um pet chamado",
-  usuario[5],
-  "\nsua idade é",
-  usuario[1],
-  "anos. Gosta muito da fruta",
-  usuario[3],
-  "\nSua cor favorita é",
-  usuario[2]
+  `Você mora no endereço: ${user[4]}, e tem um pet chamado ${user[5]}.`
 );
+console.log(`Sua idade é ${user[1]} e gosta muito de fruta ${user[3]}.`);
+console.log(`Sua cor favorita é ${user[2]}`);
+
