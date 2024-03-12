@@ -16,99 +16,82 @@
 // console.log(`___|___|___`);
 // console.log(`   |   |   `);
 
-const matriz = [
+// Estrutura do Tabuleiro
+const tabuleiro = [
   [" ", " ", " "],
   [" ", " ", " "],
   [" ", " ", " "],
 ];
-let jogador1 = "X";
-let jogador2 = "O";
+
+let jogadorAtual = "X";
 
 function jogar(jogador) {
   let linha, coluna;
+
   do {
     linha = Math.floor(Math.random() * 3);
     coluna = Math.floor(Math.random() * 3);
-  } while (matriz[linha][coluna] !== " ");
+  } while (tabuleiro[linha][coluna] !== " ");
 
-  matriz[linha][coluna] = jogador;
+  tabuleiro[linha][coluna] = jogador;
+  jogadorAtual = jogadorAtual === "X" ? "O" : "X";
 }
-jogar(jogador2);
-jogar(jogador1);
-jogar(jogador2);
-jogar(jogador1);
-jogar(jogador2);
-jogar(jogador1);
-jogar(jogador2);
-jogar(jogador1);
-jogar(jogador2);
 
-//console.table(matriz);
-console.log(`${matriz[0][0]}|${matriz[0][1]}|${matriz[0][2]}`);
-console.log(`${matriz[1][0]}|${matriz[1][1]}|${matriz[1][2]}`);
-console.log(`${matriz[2][0]}|${matriz[2][1]}|${matriz[2][2]}`);
-console.table(matriz);
-switch (true) {
-  case matriz[0][0] === matriz[1][1] && matriz[1][1] === matriz[2][2]:
-    if (matriz[0][0] == "X") {
-      console.log(`O jogador 1 ganhou `);
-    } else {
-      console.log(`O jogador 2 ganhou `);
+function verificaVencedor() {
+  for (let i = 0; i < 3; i++) {
+    if (
+      //Verifica coluna
+      tabuleiro[0][i] === tabuleiro[1][i] &&
+      tabuleiro[1][i] === tabuleiro[2][i] &&
+      tabuleiro[1][i] !== " "
+    ) {
+      console.log(`O jogador ${tabuleiro[1][i]} ganhou`);
+      return tabuleiro[1][i];
+    } else if (
+      //Verifica linha
+      tabuleiro[i][0] === tabuleiro[i][1] &&
+      tabuleiro[i][1] === tabuleiro[i][2] &&
+      tabuleiro[i][1] !== " "
+    ) {
+      console.log(`O jogador ${tabuleiro[i][1]} ganhou`);
+      return tabuleiro[i][1];
     }
-    break;
+  }
+  if (
+    // Vefifica diagonal
+    tabuleiro[0][0] === tabuleiro[1][1] &&
+    tabuleiro[1][1] === tabuleiro[2][2] &&
+    tabuleiro[1][1] !== " "
+  ) {
+    console.log(`O jogador ${tabuleiro[1][1]} ganhou`);
+    return tabuleiro[1][1];
+  } else if (
+    // Vefifica diagonal
+    tabuleiro[0][2] === tabuleiro[1][1] &&
+    tabuleiro[1][1] === tabuleiro[2][0] &&
+    tabuleiro[1][1] !== " "
+  ) {
+    console.log(`O jogador ${tabuleiro[1][1]} ganhou`);
+    return tabuleiro[1][1];
+  }
 
-  case matriz[0][2] === matriz[1][1] && matriz[1][1] === matriz[2][0]:
-    if (matriz[0][2] == "X") {
-      console.log(`O jogador 1 ganhou`);
-    } else {
-      console.log(`O jogador 2 ganhou`);
-    }
-    break;
-  case matriz[0][0] === matriz[0][1] && matriz[0][1] === matriz[0][2]:
-    if (matriz[0][0] == "X") {
-      console.log(`O jogador 1 ganhou`);
-    } else {
-      console.log(`O jogador 2 ganhou`);
-    }
-    break;
+  if (!tabuleiro.some((event) => event.includes(" "))) {
+    console.log("O jogo empatou");
+    return "Empate";
+  }
+  return "";
+}
 
-  case matriz[1][0] === matriz[1][1] && matriz[1][1] === matriz[1][2]:
-    if (matriz[1][0] == "X") {
-      console.log(`O jogador 1 ganhou`);
-    } else {
-      console.log(`O jogador 2 ganhou`);
-    }
-    break;
-  case matriz[2][0] === matriz[2][1] && matriz[2][1] === matriz[2][2]:
-    if (matriz[2][0] == "X") {
-      console.log(`O jogador 1 ganhou`);
-    } else {
-      console.log(`O jogador 2 ganhou`);
-    }
-    break;
+let vencedor = "";
 
-  case matriz[0][0] === matriz[1][0] && matriz[1][0] === matriz[2][0]:
-    if (matriz[0][0] == "X") {
-      console.log(`O jogador 1 ganhou`);
-    } else {
-      console.log(`O jogador 2 ganhou`);
-    }
-    break;
-  case matriz[0][1] === matriz[1][1] && matriz[1][1] === matriz[2][1]:
-    if (matriz[0][1] == "X") {
-      console.log(`O jogador 1 ganhou`);
-    } else {
-      console.log(`O jogador 2 ganhou`);
-    }
-    break;
-  case matriz[0][2] === matriz[1][2] && matriz[1][2] === matriz[2][2]:
-    if (matriz[0][2] == "X") {
-      console.log(`O jogador 1 ganhou`);
-    } else {
-      console.log(`O jogador 2 ganhou`);
-    }
-    break;
-  default:
-    console.log("Deu veia");
-    break;
+while (!vencedor) {
+  jogar(jogadorAtual);
+  console.table(tabuleiro);
+  vencedor = verificaVencedor();
+
+  if (!vencedor) {
+    jogar(jogadorAtual);
+    console.table(tabuleiro);
+    vencedor = verificaVencedor();
+  }
 }
